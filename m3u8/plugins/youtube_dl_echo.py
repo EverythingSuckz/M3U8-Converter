@@ -243,7 +243,7 @@ async def echo(bot, update: Message):
         ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
         await update.reply_photo(
-            photo=DEF_THUMB_NAIL_VID_S,
+            photo=thumb_image_path,
             quote=True,
             caption=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
