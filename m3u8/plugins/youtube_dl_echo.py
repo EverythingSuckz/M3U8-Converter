@@ -47,6 +47,12 @@ async def echo(bot, update: Message):
         chat_id=update.chat.id,
         action="typing"
     )
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text="__Please Wait..Fetching Details..__",
+        parse_mode="markdown",
+        reply_to_message_id=update.message_id
+    )
     LOGGER.info(update.from_user)
     url, _, youtube_dl_username, youtube_dl_password = get_link(update)
     if HTTP_PROXY is not None:
