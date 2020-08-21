@@ -1,5 +1,5 @@
 class Translation:
-    START_TEXT = """Let's Keep this Secret Between Us!"""
+    START_TEXT = """Hi {},\nI will convert M3U8 Links into Telegram Files!"""
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     UPGRADE_TEXT = "You are Free to Use Me!"

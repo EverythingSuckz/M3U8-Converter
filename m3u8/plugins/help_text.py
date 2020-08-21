@@ -47,7 +47,7 @@ async def get_me_info(bot, update):
     else:
         await bot.send_message(
             chat_id=update.chat.id,
-            text="**You don't have any Restrictions Applied to your Account**\n Telegram ID : `{}`\n\n__If you Enjoyed this BOT, Kindly Donate__",
+            text="**You don't have any Restrictions Applied to your Account**\n Telegram ID : `{}`\n\n__If you Enjoyed this BOT, Kindly Donate__".format(update.chat.id),
             parse_mode="markdown",
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -70,7 +70,7 @@ async def start(bot,update):
 
     await bot.send_message(
         chat_id=update.chat.id,
-        text=Translation.START_TEXT,
+        text=Translation.START_TEXT.format(update.from_user.first_name),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -103,7 +103,7 @@ async def upgrade(bot, update):
         disable_web_page_preview=True
     )
 
-@Client.on_message(Filters.command(["anime"]))
+@Client.on_message(Filters.command | Filters.regex(["anime"]))
 async def anime(bot, update):
     # LOGGER.info(update)
     await bot.send_photo(
@@ -121,7 +121,7 @@ async def anime(bot, update):
         reply_to_message_id=update.message_id
     )
 
-
+@Client.on_message(Filters.text)
 #    await bot.send_message(
 #        chat_id=update.chat.id,
 #        text="Looking for a Best Place for watching AD-FREE Anime?\n\nClick on the Button Below and and Search.\n\nIf you need the Episode as a Telegram Video,\nCopy the M3U8 link and Paste it here to get it as a Telegram Video",
