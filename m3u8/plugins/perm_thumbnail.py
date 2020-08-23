@@ -11,7 +11,7 @@ from PIL import Image
 import time
 
 # the secret configuration specific things
-if bool(os.environ.get("WEBHOOK", False)):
+if bool(os.environ.get("ENV", False)):
     from m3u8.sample_config import Config
 else:
     from m3u8.config import Config
