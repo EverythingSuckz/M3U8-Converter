@@ -22,7 +22,7 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
+from m3u8.helper_funcs.chat_base import TRChatBase
 import db.database as sql
 
 
