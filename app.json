@@ -39,6 +39,11 @@
       "value": "",
       "required": false
     },
+     "BLACKLIST_USERS": {
+      "description": "Banned Unwanted members..",
+      "value": "",
+      "required": false
+    },
     "CHAT_BASE_TOKEN": {
       "description": "Your chat base token, as a string.",
       "value": ""
@@ -62,7 +67,12 @@
     "UN_FINISHED_PROGRESS_STR": {
       "description": "should be a single character.",
       "required": false
-    }
+    },
+      "DATABASE_URL": {
+         "description": "Your postgres sql db, empty this field if you dont have one.",
+         "required": false,
+         "value": "sqldbtype://username:pw@hostname:port/db_name"
+      }
   },
   "addons": [
   ],
