@@ -43,10 +43,10 @@ async def echo(bot, update: Message):
             disable_web_page_preview=True
         )
         return
-    await bot.send_chat_action(
-        chat_id=update.chat.id,
-        action="typing"
-    )
+#    await bot.send_chat_action(
+#        chat_id=update.chat.id,
+#        action="typing"
+#    )
     await bot.send_message(
         chat_id=update.chat.id,
         text="__Please Wait..Fetching Details..__",
