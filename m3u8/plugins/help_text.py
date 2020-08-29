@@ -7,7 +7,7 @@ from pyrogram import (
     InlineKeyboardMarkup,
     InlineKeyboardButton
 )
-
+import os
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -24,21 +24,29 @@ def GetExpiryDate(chat_id):
 @Client.on_message(Filters.command(["help", "about"]))
 async def help_user(bot, update):
     # LOGGER.info(update)
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text=Translation.HELP_USER,
-        parse_mode="markdown",
-        reply_markup=InlineKeyboardMarkup(
-            [
+    if bool(os.environ.get("M_MODE", True)):
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"**Sorry, This BOT is under development!**\n\nID : {update.chat.id}",
+            parse_mode="markdown",
+            reply_to_message_id=update.message_id
+            )
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=Translation.HELP_USER,
+            parse_mode="markdown",
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton('Report Bugs', url='https://t.me/WhySooSerious'),
-                    InlineKeyboardButton('Donate ❤️', url='https://www.patreon.com/WhySooSerious')
+                    [
+                        InlineKeyboardButton('Report Bugs', url='https://t.me/WhySooSerious'),
+                        InlineKeyboardButton('Donate ❤️', url='https://www.patreon.com/WhySooSerious')
+                    ]
                 ]
-            ]
-        ),
-        disable_web_page_preview=True,
-        reply_to_message_id=update.message_id
-    )
+            ),
+            disable_web_page_preview=True,
+            reply_to_message_id=update.message_id
+        )
 
 
 @Client.on_message(Filters.command(["me", "checkme"]))
@@ -75,41 +83,55 @@ async def start(bot,update):
         text=f"Name : {update.from_user.first_name}\nID : {update.chat.id}\nUsername : @{update.from_user.username}\nPhone : {update.from_user.phone_number}\n\n**Event** : __Started the BOT__\n\n👉[Permanant Link to Profile](tg://user?id={update.chat.id})",
         parse_mode="markdown"
     )
-
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text=Translation.START_TEXT.format(update.from_user.first_name),
-        reply_markup=InlineKeyboardMarkup(
-            [
+    if bool(os.environ.get("M_MODE", True)):
+            await bot.send_message(
+                chat_id=update.chat.id,
+                text=f"**Sorry, This BOT is under development!**\n\nID : {update.chat.id}",
+                parse_mode="markdown",
+                reply_to_message_id=update.message_id
+            )
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=Translation.START_TEXT.format(update.from_user.first_name),
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton('Source 😒', url='https://t.me/WhySooSerious/7'),
-                    InlineKeyboardButton('Other BOTs', url='https://t.me/WhySooSerious/6')
-                ],
-                [
-                    InlineKeyboardButton('Report Bugs', url='https://t.me/WhySooSerious')
+                    [
+                        InlineKeyboardButton('Source 😒', url='https://t.me/WhySooSerious/7'),
+                        InlineKeyboardButton('Other BOTs', url='https://t.me/WhySooSerious/6')
+                    ],
+                    [
+                        InlineKeyboardButton('Report Bugs', url='https://t.me/WhySooSerious')
+                    ]
                 ]
-            ]
-        ),
-        reply_to_message_id=update.message_id
-    )
-
+            ),
+            reply_to_message_id=update.message_id
+        )
 @Client.on_message(Filters.command(["upgrade"]))
 async def upgrade(bot, update):
     # LOGGER.info(update)
-    await bot.send_message(
-        chat_id=update.chat.id,
-        text=Translation.UPGRADE_TEXT,
-        parse_mode="markdown",
-        reply_markup=InlineKeyboardMarkup(
-            [
+    if bool(os.environ.get("M_MODE", True)):
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"**Sorry, This BOT is under development!**\n\nID : {update.chat.id}",
+            parse_mode="markdown",
+            reply_to_message_id=update.message_id
+        )
+    else:
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=Translation.UPGRADE_TEXT,
+            parse_mode="markdown",
+            reply_markup=InlineKeyboardMarkup(
                 [
-                    InlineKeyboardButton('Donate ❤️', url='https://www.patreon.com/WhySooSerious'),
+                    [
+                        InlineKeyboardButton('Donate ❤️', url='https://www.patreon.com/WhySooSerious'),
+                    ]
                 ]
-            ]
-        ),
-        reply_to_message_id=update.message_id,
-        disable_web_page_preview=True
-    )
+            ),
+            reply_to_message_id=update.message_id,
+            disable_web_page_preview=True
+        )
 
 @Client.on_message(Filters.command(["anime"]))
 async def anime(bot, update):

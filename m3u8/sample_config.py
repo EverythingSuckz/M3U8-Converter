@@ -41,3 +41,5 @@ class Config(object):
     DEF_WATER_MARK_FILE = ""
     # Database url
     DB_URI = os.environ.get("DATABASE_URL", "")
+    # Maintanance Mode
+    M_MODE = os.environ.get("M_MODE", "False")
