@@ -1,5 +1,8 @@
 import logging
 import json
+import os
+import time
+import asyncio
 from pyrogram import (
     Client,
     Filters,
@@ -22,7 +25,7 @@ from m3u8.helper_funcs.run_cmnd import run_shell_command
 # the Strings used for this "thing"
 from translation import Translation
 
-
+import pyrogram
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -31,7 +34,7 @@ LOGGER = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-@Client.on_message(Filters.regex(pattern=".*http.*"))
+@Client.on_message(pyrogram.Filters.regex(pattern=".*http.*"))
 async def echo(bot, update: Message):
     if update.from_user.id in BLACKLIST_USERS:
         await update.delete()
@@ -47,12 +50,14 @@ async def echo(bot, update: Message):
 #        chat_id=update.chat.id,
 #        action="typing"
 #    )
+
     await bot.send_message(
         chat_id=update.chat.id,
         text="__Please Wait..Fetching Details..__",
         parse_mode="markdown",
         reply_to_message_id=update.message_id
     )
+
     LOGGER.info(update.from_user)
     url, _, youtube_dl_username, youtube_dl_password = get_link(update)
     if HTTP_PROXY is not None:
@@ -255,3 +260,4 @@ async def echo(bot, update: Message):
             parse_mode="html",
             reply_to_message_id=update.message_id
         )
+
